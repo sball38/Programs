@@ -1,7 +1,7 @@
 # Programs
 Base code for program assignments in Software Development (C S 371). 
 
-##lab1
+## lab1
 Added questions text files for P1&2, HelloWorld file, and build.xml files to Circles  and Simplewedbserver.
 
 ## Program 1 and Program 2
