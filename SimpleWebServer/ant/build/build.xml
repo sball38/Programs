@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="SimpleWebServer" default="compile" basedir = ".">
+   
+	<target name="delete">
+		<delete dir="bin"/>
+		<delete dir="src"/>
+		<delete dir="lib"/>
+		<delete dir="test_output"/>
+	</target>
+	
+	<target name="create" depends = "delete">
+		<mkdir dir="bin"/>
+		<mkdir dir="src"/>
+		<mkdir dir="lib"/>
+		<mkdir dir="test_output"/>
+	</target>
+	<!--
+	<target name="copy" depends="create">
+		<copydir dest="C:\Users\Seth\Documents\GitHub\Programs\SimpleWebServer\ant\build\src" src="C:\Users\Seth\Documents\GitHub\Programs\SimpleWebServer\src\edu\nmsu\cs\webserver" destdir="C:\Users\Seth\Documents\GitHub\Programs\SimpleWebServer\ant\build\bin" includes="**/*.java"></copydir>
+		<copy todir="C:\Users\Seth\Documents\GitHub\Programs\SimpleWebServer\ant\build\lib" overwrite="true">	
+		</copy>
+	</target>
+	-->
+	<target name="compile">
+		<javac srcdir="C:\Users\Seth\Documents\GitHub\Programs\SimpleWebServer\ant\build\src"></javac>
+	</target>
+	
+</project>
+
