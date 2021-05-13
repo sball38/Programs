@@ -1,5 +1,8 @@
 package edu.nmsu.cs.webserver;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+
 /**
  * Web worker: an object of this class executes in its own new thread to receive and respond to a
  * single HTTP request. After the constructor the object executes on its "run" method, and leaves
@@ -22,8 +25,10 @@ package edu.nmsu.cs.webserver;
  **/
 
 import java.io.BufferedReader;
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -58,7 +63,7 @@ public class WebWorker implements Runnable
 			InputStream is = socket.getInputStream();
 			OutputStream os = socket.getOutputStream();
 			readHTTPRequest(is);
-			writeHTTPHeader(os, "text/html");
+			writeHTTPHeader(os, "image/jpg");
 			writeContent(os);
 			os.flush();
 			socket.close();
@@ -138,9 +143,10 @@ public class WebWorker implements Runnable
 		File f = new File("test.html");
 		String path = f.getAbsolutePath();
 		BufferedReader read = new BufferedReader( new FileReader(path));
+		//Image image = ImageIO.read(f);
 		String line;
-		System.out.println(path);
-		
+		//System.out.println(path);
+		File ff = null;
 		String[] htmlCode = new String[20];
 		int storeIndex = 0;
 		int printIndex = 0;
@@ -152,7 +158,28 @@ public class WebWorker implements Runnable
 			os.write("</body></html>\n".getBytes());
 		}
 		
+		int width = 1920;
+		int height = 1080;
 		
+		BufferedImage image = null;
+		
+		try {
+			ff = new File("image.jpg");
+			image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+			image = ImageIO.read(f);
+			String pathf = ff.getAbsolutePath();
+			System.out.println(path);
+			System.out.println("File found and read.");
+		} catch (IOException e) {
+			System.out.println("Exception:" + e);
+		}// end catch
+		
+		//os.write(ImageIO.write(image, "jpg", f));
+		
+		
+		
+		
+		/*
 		while((line = read.readLine()) != null) {
 			htmlCode[storeIndex] = line;
 			storeIndex++;
@@ -162,7 +189,7 @@ public class WebWorker implements Runnable
 			os.write(htmlCode[printIndex].getBytes());
 			printIndex++;
 		}
-	
+		*/
 		
 		//while((line = read.readLine()) != null) {
 			//os.write(Line.getBytes());
